@@ -1,0 +1,3 @@
+#!/bin/bash
+echo $($(ibase=water obase=bestschool $WATER | bc)+$(ibase=stir obase=bestschool $STIR | bc))
+
