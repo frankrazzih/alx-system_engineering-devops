@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# make a custom error 404 page
+
+sudo touch /var/www/html/error_404.html 
+echo '
+http{
+server{
+error_page 404 /error_404.html;
+root /var/www/html;
+location = /error_404.html{
+	internal;
+	try_files $uri;	
+}
+}
+}
+'
