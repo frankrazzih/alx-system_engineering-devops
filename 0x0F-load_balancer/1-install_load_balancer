@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# install and configure haproxy
+
+sudo apt update
+sudo apt -y install haproxy
+
+sudo chmod 777 /etc/haproxy/haproxy.cfg
+
+echo "
+frontend front_http
+	bind *:80
+	stats uri /haproxy?stats
+	default_backend back_http
+
+backend back_http
+	balance roundrobin
+	server 03-web-01 54.221.181.151:80 check
+	server 03-web-02 100.26.169.188:80 check
+
+" >> /etc/haproxy/haproxy.cfg
+
+sudo chmod 777 /etc/default/haproxy
+
+echo "ENABLED=1" >> /etc/default/haproxy
