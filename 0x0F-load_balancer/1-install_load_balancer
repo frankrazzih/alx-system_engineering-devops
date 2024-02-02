@@ -13,7 +13,7 @@ frontend front_http
 	default_backend back_http
 
 backend back_http
-	balance roundrobin
+	roundrobin
 	server 03-web-01 54.221.181.151:80 check
 	server 03-web-02 100.26.169.188:80 check
 
