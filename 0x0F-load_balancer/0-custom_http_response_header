@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "add_header X-Served-By '03-web-01' always;" >> /etc/nginx/nginx.conf
