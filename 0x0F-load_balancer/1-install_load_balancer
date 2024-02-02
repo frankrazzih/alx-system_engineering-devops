@@ -4,7 +4,7 @@
 sudo apt get update
 sudo apt -y install haproxy
 
-echo "
+sudo echo "
 frontend front_http
 	bind *:80
 	stats uri /haproxy?stats
@@ -17,6 +17,6 @@ backend back_http
 
 " >> /etc/haproxy/haproxy.cfg
 
-echo "ENABLED=1" >> /etc/default/haproxy
+sudo echo "ENABLED=1" >> /etc/default/haproxy
 
 sudo systemctl reload haproxy
