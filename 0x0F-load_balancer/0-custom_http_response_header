@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+sudo apt get update
+sudo apt -y install nginx
+sudo systemctl start nginx
 echo "
 ubuntu@91593-web-01:~$ cat /etc/nginx/nginx.conf
 user www-data;
