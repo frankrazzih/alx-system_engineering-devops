@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #troubleshoot nginx
-sudo sed -i '/Listen/c\Listen 0:80' /etc/nginx/nginx.conf
 
-sudo systemctl restart nginx
+sudo sed -i '/Listen/c\Listen 0:80' /etc/nginx/nginx.conf
+sudo systemctl restart ngin
