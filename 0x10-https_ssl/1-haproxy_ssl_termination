@@ -31,16 +31,22 @@ defaults
         errorfile 500 /etc/haproxy/errors/500.http
 
 frontend front_http
-        bind *:80
-        stats uri /haproxy?stats
-        default_backend back_http
+	bind *:80
+	stats uri /haproxy?stats
+	default_backend back_http
 
 backend back_http
-        balance roundrobin
-        server 91593-web-01 54.221.181.151:80 check
-        server 91593-web-02 100.26.169.188:80 check
+	balance roundrobin
+	server 91593-web-01 54.221.181.151:80 check
+	server 91593-web-02 100.26.169.188:80 check
+
+backend back_https
+	balance roundrobin
+        server 91593-web-01 54.221.181.151:80 check ssl verify none
+        server 91593-web-02 100.26.169.188:80 check ssl verify none
 
 frontend www.franksolutions.tech
-        bind *:443 ssl crt /etc/letsencrypt/live/www.franksolutions.tech/haproxy.pem
-        mode tcp
-        default_backend back_http
+	bind *:443 ssl crt /home/ubuntu/sslcert
+	acl holb hdr_end(host) -i www.franksolutions.tech
+	use_backend back_https if holb
+	default_backend back_https
