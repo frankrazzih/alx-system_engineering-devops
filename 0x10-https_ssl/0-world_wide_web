@@ -12,7 +12,7 @@ fi
 if [[ $# -eq 1 ]]; then
     subs=('www' 'lb-01' 'web-01' 'web-02')
     for sub in "${subs[@]}";
-    do
+    dos
         dig_res=$(dig -t A "$sub.$1" | awk '/ANSWER SECTION/ {getline; print}')
         echo "$dig_res" | while read -ra token;
         do
