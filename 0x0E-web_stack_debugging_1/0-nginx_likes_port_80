@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-#troubleshoot nginx
-sudo sed -i '/Listen/c\Listen 0:80' /etc/nginx/nginx.conf
+# find out what’s keeping your Ubuntu container’s Nginx installation from listening on port 80
 
-sudo systemctl restart nginx
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
