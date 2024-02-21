@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #run nginx as nginx user
-sudo adduser nginx
-sudo usermod -aG sudo nginx
 sudo awk '!x {x=sub(/user www-data/, "user nginx")}1' /etc/nginx/nginx.conf | sudo tee tmp && sudo mv tmp /etc/nginx/nginx.conf
-sudo awk '!x && /listen 80/ {print "	listen *:8080; x=1"} 1' /etc/nginx/nginx.conf | sudo tee tmp && sudo mv tmp /etc/nginx/nginx.conf
+sudo awk '!x {x=sub(/listen 80/, "listen 8080")}1' /etc/nginx/nginx.conf | sudo tee tmp && sudo mv tmp /etc/nginx/nginx.conf
 
